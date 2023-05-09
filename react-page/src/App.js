@@ -4,8 +4,9 @@ import { getKVMonitors } from './functions/helpers'
 import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
+import configs from './config.json'
 
-const config = require('../src/config.json')[0];
+const config = configs[0]
 
 function App() {
   let kvMonitors = getKVMonitors().monitors
