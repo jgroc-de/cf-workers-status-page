@@ -39,7 +39,7 @@ function App() {
           </div>
           <div>
             <a
-              href="https://github.com/eidam/cf-workers-status-page"
+              href="https://github.com/jgroc-de/cf-workers-status-page"
               target="_blank"
               class="text-blue-500 dark:text-blue-400"
             >
