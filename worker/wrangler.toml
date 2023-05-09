@@ -1,0 +1,13 @@
+name = "dry-shadow-103d"
+main = "dist/main.js"
+compatibility_date = "2023-05-08"
+usage_model = "bundled"
+env = { }
+
+[triggers]
+crons = ["*/30 * * * *"]
+
+[[kv_namespaces]]
+id = "e8fdf7e54ba84742a9877eb0b7f091c3"
+binding = "TEST"
+preview_id = "dce6805598f348d8befac1aac03c29e3"
