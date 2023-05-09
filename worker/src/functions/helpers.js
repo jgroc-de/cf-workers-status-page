@@ -1,4 +1,4 @@
-import config from '../../../config.yaml'
+import config from '../../config.yaml'
 
 const kvDataKey = 'monitors_data_v1_1'
 
