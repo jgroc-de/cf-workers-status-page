@@ -1,0 +1,34 @@
+[{
+  "settings": {
+    "title": "Status Page",
+    "logo": "logo-192.png",
+    "daysInHistogram": 90,
+    "monitorLabelOperational": "Operational",
+    "monitorLabelNotOperational": "Not Operational",
+    "monitorLabelNoData": "No data",
+    "dayInHistogramNoData": "No data",
+    "dayInHistogramOperational": "All good",
+    "dayInHistogramNotOperational": " incident(s)"
+  },
+  "monitors": [
+    {
+      "id": "rosaly-app",
+      "name": "app.rosaly.com",
+      "description": "Check rosaly app status.",
+      "url": "https://app.rosaly.com/login",
+      "method": "GET",
+      "expectStatus": 200,
+      "followRedirect": false,
+      "linkable": false
+    },
+    {
+      "id": "companies-admin",
+      "name": "companies.rosaly.com",
+      "description": "Check companies admin status.",
+      "url": "https://companies.rosaly.com/login",
+      "method": "GET",
+      "expectStatus": 200,
+      "linkable": true
+    }
+  ]
+}]

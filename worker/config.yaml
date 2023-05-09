@@ -1,0 +1,33 @@
+settings:
+  title: 'Status Page'
+  url: 'https://status-page.eidam.dev' # used for Slack messages
+  logo: logo-192x192.png # image in ./public/ folder
+  daysInHistogram: 90 # number of days you want to display in histogram
+  collectResponseTimes: true # collects avg response times from CRON locations
+
+  allmonitorsOperational: 'All Systems Operational'
+  notAllmonitorsOperational: 'Not All Systems Operational'
+  monitorLabelOperational: 'Operational'
+  monitorLabelNotOperational: 'Not Operational'
+  monitorLabelNoData: 'No data'
+  dayInHistogramNoData: 'No data'
+  dayInHistogramOperational: 'All good'
+  dayInHistogramNotOperational: ' incident(s)' # xx incident(s) recorded
+
+monitors:
+  - id: rosaly-app # unique identifier
+    name: app.rosaly.com
+    description: 'Check rosaly app status.' # default=empty
+    url: https://app.rosaly.com/login # URL to fetch
+    method: GET # default=GET
+    expectStatus: 200 # operational status, default=200
+    followRedirect: false # should fetch follow redirects, default=false
+    linkable: false # allows the title to be a link, default=true
+
+  - id: companies-admin
+    name: companies.rosaly.com
+    description: 'Check companies admin status.'
+    url: https://companies.rosaly.com/login
+    method: GET
+    expectStatus: 200
+    linkable: true # allows the title to be a link, default=true
