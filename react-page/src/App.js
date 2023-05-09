@@ -1,25 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { getKVMonitors } from './functions/helpers'
+import MonitorCard from '../src/components/monitorCard'
+import MonitorStatusHeader from './components/monitorStatusHeader'
+import ThemeSwitcher from './components/themeSwitcher'
+
+const config = require('./config.json')[0];
+
 function App() {
+  let kvMonitors = getKVMonitors().monitors
+  let kvMonitorsLastUpdate =  getKVMonitors().lastUpdate
+
+  let rows = []
+  for (let monitor of config.monitors) {
+    rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]}/>)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen App">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-row justify-between items-center p-4">
+          <div className="flex flex-row items-center">
+            <img className="h-8 w-auto" src={config.settings.logo} />
+            <h1 className="ml-4 text-3xl">{config.settings.title}</h1>
+          </div>
+          <div className="flex flex-row items-center">
+            {typeof window !== 'undefined' && <ThemeSwitcher />}
+          </div>
+        </div>
+        <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
+        { rows }
+        <div className="flex flex-row justify-between mt-4 text-sm">
+          <div>
+            Powered by{' '}
+            <a href="https://workers.cloudflare.com/" target="_blank" class="text-blue-500 dark:text-blue-400">
+              Cloudflare Workers{' '}
+            </a>
+          </div>
+          <div>
+            <a
+              href="https://github.com/eidam/cf-workers-status-page"
+              target="_blank"
+              class="text-blue-500 dark:text-blue-400"
+            >
+              Get Your Status Page
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
+
 
 export default App;

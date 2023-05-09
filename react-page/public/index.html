@@ -24,9 +24,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Cloudflare app</title>
+    <script>
+      function setTheme(theme) {
+        document.documentElement.classList.remove("dark", "light")
+        document.documentElement.classList.add(theme)
+        localStorage.theme = theme
+      }
+      (() => {
+        const query = window.matchMedia("(prefers-color-scheme: dark)")
+        query.addListener(() => {
+          setTheme(query.matches ? "dark" : "light")
+        })
+        if (["dark", "light"].includes(localStorage.theme)) {
+          setTheme(localStorage.theme)
+        } else {
+          setTheme(query.matches ? "dark" : "light")
+        }
+      })()
+    </script>
   </head>
-  <body>
+  <body class="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-50">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
