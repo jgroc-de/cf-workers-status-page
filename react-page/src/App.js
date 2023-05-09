@@ -21,7 +21,7 @@ function App() {
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center p-4">
           <div className="flex flex-row items-center">
-            <img className="h-8 w-auto" src={config.settings.logo} />
+            <img className="h-8 w-auto" src={config.settings.logo} alt="logo"/>
             <h1 className="ml-4 text-3xl">{config.settings.title}</h1>
           </div>
           <div className="flex flex-row items-center">
@@ -33,7 +33,12 @@ function App() {
         <div className="flex flex-row justify-between mt-4 text-sm">
           <div>
             Powered by{' '}
-            <a href="https://workers.cloudflare.com/" target="_blank" class="text-blue-500 dark:text-blue-400">
+            <a
+              href="https://workers.cloudflare.com/"
+              target="_blank"
+              class="text-blue-500 dark:text-blue-400"
+              rel="noreferrer"
+            >
               Cloudflare Workers{' '}
             </a>
           </div>
@@ -42,6 +47,7 @@ function App() {
               href="https://github.com/jgroc-de/cf-workers-status-page"
               target="_blank"
               class="text-blue-500 dark:text-blue-400"
+              rel="noreferrer"
             >
               Get Your Status Page
             </a>
