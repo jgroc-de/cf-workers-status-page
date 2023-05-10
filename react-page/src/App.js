@@ -12,7 +12,9 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    async function fetchData() {
+    function fetchData() {
+      // this fetch will call the worker function defined in functions/data.js
+      // so that we can access KV values.
       const response = await fetch('/data', { method: 'GET' })
       if (!response.ok) {
         throw new Error('Data coud not be fetched!')
@@ -21,10 +23,7 @@ function App() {
       }
     }
     fetchData()
-      .then((jsonResponse) => {
-        console.log(jsonResponse)
-        setData(jsonResponse)
-      })
+      .then((jsonResponse) => { setData(jsonResponse) })
       .catch((error) => { console.log(error) })
     ;
   }, [])
@@ -41,17 +40,15 @@ function App() {
             <h1 className="ml-4 text-3xl">Status Page</h1>
           </div>
           <div className="flex flex-row items-center">
-            {typeof window !== 'undefined' && <ThemeSwitcher />}
+            { typeof window !== 'undefined' && <ThemeSwitcher /> }
           </div>
         </div>
         <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
-        { kvMonitors && config.monitors.map((monitor) => {
-          return (<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />)
-        }) }
+        { kvMonitors && config.monitors.map((monitor) => { return (
+          <MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />
+        )}) }
         <div className="flex flex-row justify-between mt-4 text-sm">
-          <div>
-            Powered by <Link href={ "https://workers.cloudflare.com/" } text={ "Cloudflare Workers" } />
-          </div>
+          <div>Powered by <Link href={ "https://workers.cloudflare.com/" } text={ "Cloudflare Workers" } /></div>
           <Link href={ "https://github.com/jgroc-de/cf-workers-status-page" } text={ "Get Your Status Page" } />
         </div>
       </div>
