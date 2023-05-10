@@ -7,5 +7,7 @@ export function onRequest(context) {
   const myHeaders = new Headers();
 
   myHeaders.append("Content-Type", "application/json");
-  return new Response(context.env)
+
+  return new Response(Object.keys(context.env))
+  return new Response(getKVMonitors(context.env.KV_STATUS_PAGE), myHeaders)
 }
