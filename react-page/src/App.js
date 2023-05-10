@@ -1,6 +1,4 @@
 import './App.css';
-
-import { getKVMonitors } from './functions/helpers'
 import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
@@ -8,13 +6,19 @@ import configs from './config.json'
 
 const config = configs[0]
 
+export async function getMonitorsData() {
+  const response = await fetch('/data', { method: 'GET' })
+  return response.json()
+}
+
 function App() {
-  let kvMonitors = getKVMonitors().monitors
-  let kvMonitorsLastUpdate =  getKVMonitors().lastUpdate
+  const data = await getMonitorsData()
+  let kvMonitors = data.monitors
+  let kvMonitorsLastUpdate =  data.lastUpdate
 
   let rows = []
   for (let monitor of config.monitors) {
-    rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]}/>)
+    rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config}/>)
   }
 
   return (

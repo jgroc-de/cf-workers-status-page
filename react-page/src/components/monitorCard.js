@@ -1,8 +1,5 @@
 import MonitorStatusLabel from './monitorStatusLabel'
 import MonitorHistogram from './monitorHistogram'
-import configs from '../config.json'
-
-const config = configs[0]
 
 const infoIcon = (
   <svg
@@ -19,7 +16,7 @@ const infoIcon = (
   </svg>
 )
 
-export default function MonitorCard({ monitor, data }) {
+export default function MonitorCard({ monitor, data, config }) {
   return (
     <div key={monitor.id} className="card">
       <div className="flex flex-row justify-between items-center mb-2">
@@ -47,10 +44,10 @@ export default function MonitorCard({ monitor, data }) {
           }
 
         </div>
-        <MonitorStatusLabel kvMonitor={data} />
+        <MonitorStatusLabel kvMonitor={data} config={config} />
       </div>
 
-      <MonitorHistogram monitorId={monitor.id} kvMonitor={data} />
+      <MonitorHistogram monitorId={monitor.id} kvMonitor={data} config={config} />
 
       <div className="flex flex-row justify-between items-center text-gray-400 text-sm">
         <div>{config.settings.daysInHistogram} days ago</div>

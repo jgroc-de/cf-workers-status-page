@@ -1,10 +1,7 @@
 import React from 'react'
 import MonitorDayAverage from './monitorDayAverage'
-import configs from '../config.json'
 
-const config = configs[0]
-
-export default function MonitorHistogram({ monitorId, kvMonitor }) {
+export default function MonitorHistogram({ monitorId, kvMonitor, config }) {
   // create date and set date - daysInHistogram for the first day of the histogram
   let date = new Date()
   date.setDate(date.getDate() - config.settings.daysInHistogram)

@@ -1,7 +1,3 @@
-import configs from '../config.json'
-
-const config = configs[0]
-
 const classes = {
   gray: 'bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
   green: 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200',
@@ -9,7 +5,7 @@ const classes = {
     'bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200',
 }
 
-export default function MonitorStatusLabel({ kvMonitor }) {
+export default function MonitorStatusLabel({ kvMonitor, config }) {
   let color = 'gray'
   let text = 'No data'
 
