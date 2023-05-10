@@ -18,10 +18,10 @@ function App() {
       } else {
         setData(response.json())
       }
+      console.log(data)
     }
     fetchData();
   }, [])
-  console.log(data)
 
   let kvMonitors = data ? data.monitors : {}
   let kvMonitorsLastUpdate =  data ? data.lastUpdate : {}
@@ -29,7 +29,7 @@ function App() {
   let rows = []
   if (kvMonitors) {
     for (let monitor of config.monitors) {
-      rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config}/>)
+      rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />)
     }
   }
 
@@ -74,7 +74,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
