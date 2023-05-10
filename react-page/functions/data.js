@@ -3,11 +3,13 @@ export function getKVMonitors(kvNamespace) {
   return kvNamespace.get('monitors_data_v1_1')
 }
 
-export function onRequest(context) {
+export async function onRequest(context) {
   const myHeaders = new Headers();
 
   myHeaders.append("Content-Type", "application/json");
 
-  return new Response(context.env.KV_STATUS_PAGE.list())
+  const value = await env.NAMESPACE.list();
+
+  return new Response(value.keys)
   return new Response(getKVMonitors(context.env.KV_STATUS_PAGE), myHeaders)
 }
