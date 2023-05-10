@@ -20,7 +20,7 @@ function App() {
       }
       console.log(data)
     }
-    fetchData();
+    await fetchData();
   }, [])
 
   let kvMonitors = data ? data.monitors : {}
