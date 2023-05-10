@@ -2,8 +2,10 @@ import './App.css';
 import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
+import MonitorFilter from './components/monitorFilter';
 import Link from './components/link'
 import { useState, useEffect } from 'react'
+import { useKeyPress } from './functions/helper'
 import configs from './config.json'
 
 const config = configs[0]
@@ -12,7 +14,7 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    function fetchData() {
+    async function fetchData() {
       // this fetch will call the worker function defined in functions/data.js
       // so that we can access KV values.
       const response = await fetch('/data', { method: 'GET' })
@@ -28,6 +30,8 @@ function App() {
     ;
   }, [])
 
+  const filterByTerm = (term) => {return term}
+
   let kvMonitors = data ? data.monitors : {}
   let kvMonitorsLastUpdate =  data ? data.lastUpdate : {}
 
@@ -36,11 +40,12 @@ function App() {
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center p-4">
           <div className="flex flex-row items-center">
-            <img className="h-8 w-auto" src="logo-192.png" alt="logo"/>
+            <img className="h-8 w-auto" src="logo192.png" alt="logo"/>
             <h1 className="ml-4 text-3xl">Status Page</h1>
           </div>
           <div className="flex flex-row items-center">
             { typeof window !== 'undefined' && <ThemeSwitcher /> }
+            <MonitorFilter active={ useKeyPress('/') } callback={ filterByTerm } />
           </div>
         </div>
         <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
