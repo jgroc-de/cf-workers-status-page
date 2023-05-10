@@ -19,11 +19,11 @@ function App() {
   }
   useEffect(() => {
     fetchData()
-      .then((res) => {
-        initData(res)
+      .then((response) => {
+        initData(response)
       })
-      .catch((e) => {
-        console.log(e.message)
+      .catch((exception) => {
+        console.log(exception.message)
       })
   }, [])
 
