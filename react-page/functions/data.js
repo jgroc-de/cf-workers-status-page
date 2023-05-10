@@ -4,8 +4,5 @@ function getKVMonitors(kvNamespace) {
 }
 
 export async function onRequest(context) {
-  const value = await context.env.KV_STATUS_PAGE.list();
-
-  return new Response(value.keys)
-  return new Response(getKVMonitors(context.env.KV_STATUS_PAGE), myHeaders)
+  return new Response(getKVMonitors(context.env.TEST))
 }
