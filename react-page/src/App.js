@@ -3,16 +3,30 @@ import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
 import configs from './config.json'
+import { useState, useEffect } from 'react'
 
 const config = configs[0]
 
-export async function getMonitorsData() {
-  const response = await fetch('/data', { method: 'GET' })
-  return response.json()
-}
-
 function App() {
-  const data = await getMonitorsData()
+  const [data, initData] = useState([])
+  const fetchData = async () => {
+    const response = await fetch('/data', { method: 'GET' })
+    if (!response.ok) {
+      throw new Error('Data coud not be fetched!')
+    } else {
+      return response.json()
+    }
+  }
+  useEffect(() => {
+    fetchData()
+      .then((res) => {
+        initData(res)
+      })
+      .catch((e) => {
+        console.log(e.message)
+      })
+  }, [])
+
   let kvMonitors = data.monitors
   let kvMonitorsLastUpdate =  data.lastUpdate
 
