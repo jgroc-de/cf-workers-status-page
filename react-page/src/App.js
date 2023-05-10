@@ -8,31 +8,29 @@ import { useState, useEffect } from 'react'
 const config = configs[0]
 
 function App() {
-  const [data, initData] = useState([])
-  const fetchData = async () => {
-    const response = await fetch('/data', { method: 'GET' })
-    if (!response.ok) {
-      throw new Error('Data coud not be fetched!')
-    } else {
-      return response.json()
-    }
-  }
-  useEffect(() => {
-    fetchData()
-      .then((response) => {
-        initData(response)
-      })
-      .catch((exception) => {
-        console.log(exception.message)
-      })
-  }, [])
+  const [data, setData] = useState([])
 
-  let kvMonitors = data.monitors
-  let kvMonitorsLastUpdate =  data.lastUpdate
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/data', { method: 'GET' })
+      if (!response.ok) {
+        console.log('Data coud not be fetched!')
+      } else {
+        setData(response.json())
+      }
+    }
+    fetchData();
+  }, [])
+  console.log(data)
+
+  let kvMonitors = data ? data.monitors : {}
+  let kvMonitorsLastUpdate =  data ? data.lastUpdate : {}
 
   let rows = []
-  for (let monitor of config.monitors) {
-    rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config}/>)
+  if (kvMonitors) {
+    for (let monitor of config.monitors) {
+      rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config}/>)
+    }
   }
 
   return (
