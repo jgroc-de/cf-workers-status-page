@@ -4,5 +4,5 @@ export function getKVMonitors(kvNamespace) {
 }
 
 export function onRequest(context) {
-  return (new Response()).json(getKVMonitors(context.env.KV_STATUS_PAGE))
+  return new Response(JSON.stringify(getKVMonitors(context.env.KV_STATUS_PAGE)))
 }
