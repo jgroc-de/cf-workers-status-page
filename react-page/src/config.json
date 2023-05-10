@@ -1,7 +1,5 @@
 [{
   "settings": {
-    "title": "Status Page",
-    "logo": "logo-192.png",
     "daysInHistogram": 90,
     "monitorLabelOperational": "Operational",
     "monitorLabelNotOperational": "Not Operational",

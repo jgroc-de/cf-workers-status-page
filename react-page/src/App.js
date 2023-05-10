@@ -2,8 +2,8 @@ import './App.css';
 import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
-import configs from './config.json'
 import { useState, useEffect } from 'react'
+import configs from './config.json'
 
 const config = configs[0]
 
@@ -31,27 +31,22 @@ function App() {
   let kvMonitors = data ? data.monitors : {}
   let kvMonitorsLastUpdate =  data ? data.lastUpdate : {}
 
-  let rows = []
-  if (kvMonitors) {
-    for (let monitor of config.monitors) {
-      rows.push(<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />)
-    }
-  }
-
   return (
     <div className="min-h-screen App">
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center p-4">
           <div className="flex flex-row items-center">
-            <img className="h-8 w-auto" src={config.settings.logo} alt="logo"/>
-            <h1 className="ml-4 text-3xl">{config.settings.title}</h1>
+            <img className="h-8 w-auto" src="logo-192.png" alt="logo"/>
+            <h1 className="ml-4 text-3xl">Status Page</h1>
           </div>
           <div className="flex flex-row items-center">
             {typeof window !== 'undefined' && <ThemeSwitcher />}
           </div>
         </div>
         <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
-        { rows }
+        { kvMonitors && config.monitors.map((monitor) => {
+          return (<MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />)
+        }) }
         <div className="flex flex-row justify-between mt-4 text-sm">
           <div>
             Powered by{' '}
