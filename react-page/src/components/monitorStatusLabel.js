@@ -1,8 +1,7 @@
-const classes = {
+const cssClasses = {
   gray: 'bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
   green: 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200',
-  yellow:
-    'bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200',
+  yellow: 'bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200',
 }
 
 export default function MonitorStatusLabel({ kvMonitor, config }) {
@@ -19,5 +18,5 @@ export default function MonitorStatusLabel({ kvMonitor, config }) {
     }
   }
 
-  return <div className={`pill leading-5 ${classes[color]}`}>{text}</div>
+  return <div className={`pill leading-5 ${cssClasses[color]}`}>{text}</div>
 }

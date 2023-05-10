@@ -1,6 +1,6 @@
 import { locations } from '../functions/locations'
 
-const classes = {
+const cssClasses = {
   green:
     'bg-green-200 text-green-700 dark:bg-green-700 dark:text-green-200 border-green-300 dark:border-green-600',
   yellow:
@@ -17,7 +17,7 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
   }
 
   return (
-    <div className={`card mb-4 font-semibold ${ classes[color] }`}>
+    <div className={`card mb-4 font-semibold ${ cssClasses[color] }`}>
       <div className="flex flex-row justify-between items-center">
         <div>{ text }</div>
         { kvMonitorsLastUpdate && kvMonitorsLastUpdate.time && typeof window !== 'undefined' && (

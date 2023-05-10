@@ -2,6 +2,7 @@ import './App.css';
 import MonitorCard from './components/monitorCard'
 import MonitorStatusHeader from './components/monitorStatusHeader'
 import ThemeSwitcher from './components/themeSwitcher'
+import Link from './components/link'
 import { useState, useEffect } from 'react'
 import configs from './config.json'
 
@@ -49,26 +50,9 @@ function App() {
         }) }
         <div className="flex flex-row justify-between mt-4 text-sm">
           <div>
-            Powered by{' '}
-            <a
-              href="https://workers.cloudflare.com/"
-              target="_blank"
-              class="text-blue-500 dark:text-blue-400"
-              rel="noreferrer"
-            >
-              Cloudflare Workers{' '}
-            </a>
+            Powered by <Link href={ "https://workers.cloudflare.com/" } text={ "Cloudflare Workers" } />
           </div>
-          <div>
-            <a
-              href="https://github.com/jgroc-de/cf-workers-status-page"
-              target="_blank"
-              class="text-blue-500 dark:text-blue-400"
-              rel="noreferrer"
-            >
-              Get Your Status Page
-            </a>
-          </div>
+          <Link href={ "https://github.com/jgroc-de/cf-workers-status-page" } text={ "Get Your Status Page" } />
         </div>
       </div>
     </div>
