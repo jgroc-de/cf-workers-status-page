@@ -14,13 +14,18 @@ function App() {
     async function fetchData() {
       const response = await fetch('/data', { method: 'GET' })
       if (!response.ok) {
-        console.log('Data coud not be fetched!')
+        throw new Error('Data coud not be fetched!')
       } else {
-        setData(response.json())
+        return response.json()
       }
-      console.log(data)
     }
-    await fetchData();
+    fetchData()
+      .then((jsonResponse) => {
+        console.log(jsonResponse)
+        setData(jsonResponse)
+      })
+      .catch((error) => { console.log(error) })
+    ;
   }, [])
 
   let kvMonitors = data ? data.monitors : {}
