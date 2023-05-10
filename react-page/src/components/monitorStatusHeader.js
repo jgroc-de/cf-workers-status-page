@@ -15,19 +15,23 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
     color = 'yellow'
     text = "Not All Systems Operational"
   }
+  let time = null
+  let city = null
+  if (kvMonitorsLastUpdate && kvMonitorsLastUpdate.time) {
+    time = Math.round((Date.now() - kvMonitorsLastUpdate.time) / 1000)
+    city = locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc
+  }
 
   return (
-    <div className={`card mb-4 font-semibold ${ cssClasses[color] }`}>
-      <div className="flex flex-row justify-between items-center">
-        <div>{ text }</div>
-        { kvMonitorsLastUpdate && kvMonitorsLastUpdate.time && typeof window !== 'undefined' && (
-          <div className="text-xs font-light">
-            checked{' '}
-            { Math.round((Date.now() - kvMonitorsLastUpdate.time) / 1000) } sec
-            ago (from{' '} { locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc })
-          </div>
+    <section className={`
+      p-[1rem] border-[1px] rounded-[0.5rem] mb-4 font-semibold
+      ${ cssClasses[color] }
+      flex flex-row justify-between items-center
+      `}>
+        <span>{ text }</span>
+        { time && typeof window !== 'undefined' && (
+          <span className="text-xs font-light">checked { time } sec ago (from { city })</span>
         )}
-      </div>
-    </div>
+    </section>
   )
 }

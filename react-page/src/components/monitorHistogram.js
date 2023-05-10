@@ -32,37 +32,44 @@ export default function MonitorHistogram({ monitorId, kvMonitor, config }) {
         }
 
         return (
-          <div key={key} className="hitbox tooltip">
-            <div className={`${bg} bar`} />
-            <div className="content text-center py-1 px-2 mt-2 left-1/2 -ml-20 w-40 text-xs">
-              {dayInHistogram}
+          <li key={ key } className="w-full h-full p-[1px] relative items-end box-border rounded-[3.75px] tooltip">
+            <div className={`${bg} bg-gray-300 dark:bg-gray-600 bar h-full p-[1px] rounded-[100px] w-[85%]`} />
+            <div className="
+              content
+              invisible absolute z-50 inline-block
+              rounded-lg bg-gray-100 dark:bg-gray-800 shadow
+              opacity-0 transition-all duration-200 scale-50
+              text-center
+              py-1 px-2 mt-2 left-1/2 -ml-20 w-40 text-xs
+              ">
+              { dayInHistogram }
               <br />
               <span className="font-semibold text-sm">
                 {dayInHistogramLabel}
               </span>
-              {kvMonitor &&
+              { kvMonitor &&
                 kvMonitor.checks.hasOwnProperty(dayInHistogram) &&
                 Object.keys(kvMonitor.checks[dayInHistogram].res).map((key) => {
                   return (
                     <MonitorDayAverage
-                      location={key}
-                      avg={kvMonitor.checks[dayInHistogram].res[key].a}
+                      location={ key }
+                      avg={ kvMonitor.checks[dayInHistogram].res[key].a }
                     />
                   )
-                })}
+                }) }
             </div>
-          </div>
+          </li>
         )
       },
     )
   }
 
   return (
-    <div
+    <ul
       key={`${monitorId}-histogram`}
-      className="flex flex-row items-center histogram"
+      className="flex flex-row items-center h-6 w-full mx-auto"
     >
-      {content}
-    </div>
+      { content }
+    </ul>
   )
 }

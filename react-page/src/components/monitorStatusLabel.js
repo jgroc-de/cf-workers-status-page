@@ -18,5 +18,9 @@ export default function MonitorStatusLabel({ kvMonitor, config }) {
     }
   }
 
-  return <div className={`pill leading-5 ${cssClasses[color]}`}>{text}</div>
+  return <div
+      className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full  ${cssClasses[color]}`}
+    >
+      { text }
+    </div>
 }

@@ -3,34 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -43,32 +19,6 @@
 }
 
 @layer components {
-  .card {
-    @apply p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 shadow rounded-lg p-4 mb-2;
-  }
-
-  .pill {
-    @apply px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full;
-  }
-
-  .histogram {
-    @apply h-6 w-full mx-auto;
-  }
-  .hitbox {
-    align-items: flex-end;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    padding: 1px;
-    border-radius: 3.75px;
-  }
-  .bar {
-    @apply bg-gray-300 dark:bg-gray-600;
-    padding-bottom: 1px;
-    height: 100%;
-    width: 85%;
-    border-radius: 100px;
-  }
 
   .bar.green {
     @apply bg-green-400 dark:bg-green-700;
@@ -80,16 +30,6 @@
 
   .bar.yellow {
     @apply bg-yellow-400 dark:bg-yellow-700;
-  }
-
-  .tooltip {
-    @apply relative;
-  }
-
-  .tooltip .content {
-    @apply invisible absolute z-50 inline-block;
-    @apply rounded-lg py-1 px-2 bg-gray-100 dark:bg-gray-800 shadow;
-    @apply opacity-0 transition-all duration-200 scale-50;
   }
 
   .tooltip:hover .content {
