@@ -1,5 +1,12 @@
 import { useState } from 'react'
 
+/*const filterByTerm = (term) =>
+  MonitorStore.set((state) => ({
+    visible: state.monitors.filter((monitor) =>
+      monitor.name.toLowerCase().includes(term),
+    ),
+  }))*/
+
 export default function MonitorFilter({ active, callback }) {
   const [input, setInput] = useState('')
 

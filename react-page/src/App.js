@@ -11,7 +11,10 @@ import configs from './config.json'
 const config = configs[0]
 
 function App() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
+  const [kvMonitors, setKvMonitors] = useState({})
+  const [saveCount, setSaveCount] = useState(0)
+
 
   useEffect(() => {
     async function fetchData() {
@@ -31,9 +34,18 @@ function App() {
     ;
   }, [])
 
-  const filterByTerm = (term) => {return term}
+  const filterByTerm = (term) => {
+    let tmp = config.monitors.filter((monitor) => {
+      return monitor.name.toLowerCase().includes(term)
+    })
+    setKvMonitors(tmp)
+  }
 
-  let kvMonitors = data ? data.monitors : {}
+  if (data && data.monitors && saveCount !== data.monitors.length) {
+    setSaveCount(data.monitors.length)
+    setKvMonitors(config.monitors)
+  }
+  //let kvMonitors = data ? data.monitors : {}
   let kvMonitorsLastUpdate =  data ? data.lastUpdate : {}
 
   return (
@@ -49,8 +61,8 @@ function App() {
         </div>
       </header>
       <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
-      { kvMonitors && config.monitors.map((monitor) => { return (
-        <MonitorCard monitor={monitor} data={kvMonitors[monitor.id]} config={config} />
+      { Object.keys(kvMonitors).length > 0 && kvMonitors.map((monitor, key) => { return (
+        <MonitorCard key={key} monitor={monitor} data={kvMonitors[monitor.id]} config={config} />
       )}) }
       <footer className="flex flex-row justify-between mt-4 text-sm">
         <p>Powered by <Link href={ "https://workers.cloudflare.com/" } text={ "Cloudflare Workers" } /></p>

@@ -52,6 +52,7 @@ export default function MonitorHistogram({ monitorId, kvMonitor, config }) {
                 Object.keys(kvMonitor.checks[dayInHistogram].res).map((key) => {
                   return (
                     <MonitorDayAverage
+                      key={ key }
                       location={ key }
                       avg={ kvMonitor.checks[dayInHistogram].res[key].a }
                     />

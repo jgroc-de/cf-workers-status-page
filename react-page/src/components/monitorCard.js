@@ -3,9 +3,9 @@ import MonitorHistogram from './monitorHistogram'
 
 export default function MonitorCard({ monitor, data, config }) {
   return (
-    <section key={monitor.id} className="p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 shadow rounded-lg mb-2">
+    <section className="p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 shadow rounded-lg mb-2">
       <header className="flex flex-row justify-between items-center mb-2">
-        <hggroup className="flex flex-row items-center align-center">
+        <hgroup className="flex flex-row items-center align-center">
           {monitor.description && (
             <aside className="relative tooltip">
               <svg
@@ -42,7 +42,7 @@ export default function MonitorCard({ monitor, data, config }) {
             )
           }
 
-        </hggroup>
+        </hgroup>
         <MonitorStatusLabel kvMonitor={data} config={config} />
       </header>
 
