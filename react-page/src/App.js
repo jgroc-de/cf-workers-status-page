@@ -62,7 +62,7 @@ function App() {
       </header>
       <MonitorStatusHeader kvMonitorsLastUpdate={kvMonitorsLastUpdate} />
       { Object.keys(kvMonitors).length > 0 && kvMonitors.map((monitor, key) => { return (
-        <MonitorCard key={key} monitor={monitor} data={kvMonitors[monitor.id]} config={config} />
+        <MonitorCard key={key} monitor={monitor} data={data.monitors[monitor.id]} config={config} />
       )}) }
       <footer className="flex flex-row justify-between mt-4 text-sm">
         <p>Powered by <Link href={ "https://workers.cloudflare.com/" } text={ "Cloudflare Workers" } /></p>
